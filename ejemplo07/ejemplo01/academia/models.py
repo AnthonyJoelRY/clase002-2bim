@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 
 # Create your models here.
@@ -10,4 +11,13 @@ class Estudiante(models.Model):
 
 
     def __str__(self):
-        return f"{self.nombre} - {self.apellido} - {self.cedula} - {self.edad}"
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido} - Ciudad: {self.Ciudad()} - Edad: {self.edad} - Año de nacimiento: {self.anio_nacimiento()}"
+    
+    def anio_nacimiento(self):
+        return date.today().year - self.edad
+    
+    def Ciudad (self):
+        if self.cedula.startswith("11"):
+            return "Loja"
+        else:
+            return "Otra ciudad"
